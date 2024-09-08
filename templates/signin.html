@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+        }
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 10% 6px 1%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+        
+        /* sign in and regiter */
+
+        .main-container {
+            width: 600px;
+            height: 550px;
+            background-color: whitesmoke;
+            border-radius: 10px;
+            box-shadow: 16px 10px 25px rgb(166, 157, 250);
+            overflow: hidden;
+            position: relative;
+            margin:30px 20% 30px 25%;
+        }
+
+        .form-wrapper {
+            display: flex;
+            width: 200%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .form-panel {
+            width: 50%;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .sign-in-panel {
+            padding-top: 10%;
+            background-color: #38ada9;
+            color: white;
+        }
+
+        .register-panel {
+            background-color: #38ada9;
+            color: white;
+        }
+
+        .form-title {
+            margin-bottom: 20px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #0984e3;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .form-button:hover {
+            background-color: #74b9ff;
+        }
+
+        .form-text {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .toggle-link {
+            color: #dcdde1;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .toggle-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+          
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/editor">Editor</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+<body>
+    <div class="main-container">
+        <div class="form-wrapper">
+            <div class="form-panel sign-in-panel">
+                <h2 class="form-title">Sign In</h2>
+                <p>Hello,User Get login and Explore more from Us</p>
+
+
+                <form action="/log" method="post" id="signInForm" class="form">
+                    <input type="text" id="signInUsername" class="input-field" name="signinusername" placeholder="Username" required>
+                    <input type="password" id="signInPassword" class="input-field" name="signinpassword" placeholder="Password" required>
+                    <button type="submit" class="form-button">Sign In</button>
+                </form>
+                <p class="form-text">Don't have an account? <span class="toggle-link" id="switchToRegister">Register here</span></p>
+            </div>
+            
+            <div class="form-panel register-panel">
+                <h2 class="form-title">Register</h2>
+                <p>Welcome to Code_Arena you're now a New User from Us</p>
+
+                <form action="/regis" method="post" id="registerForm" class="form">
+                    <input type="text" id="fullName" class="input-field" name="name" placeholder="Full Name" required>
+                    <input type="email" id="userEmail" class="input-field" name="username" placeholder="Email" required>
+                    <input type="tel" id="userPhone" class="input-field" name="phonenumber" placeholder="Phone Number" required pattern="[0-9]{10}">
+                    <input type="password" id="userPassword" class="input-field" name="password" placeholder="Password" required>
+                    <input type="password" id="confirmUserPassword" class="input-field" name="confirmpassword" placeholder="Confirm Password" required>
+                    <button type="submit" class="form-button">Register</button>
+                </form>
+                <p class="form-text">Already have an account? <span class="toggle-link" id="switchToSignIn">Sign-in here</span></p> 
+                 
+            </div>
+            
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+    const formWrapper = document.querySelector('.form-wrapper');
+    const switchToRegister = document.getElementById('switchToRegister');
+    const switchToSignIn = document.getElementById('switchToSignIn');
+
+    switchToRegister.addEventListener('click', () => {
+        formWrapper.style.transform = 'translateX(-50%)';
+    });
+
+    switchToSignIn.addEventListener('click', () => {
+        formWrapper.style.transform = 'translateX(0)';
+    });
+
+
+     // Password confirmation validation
+     const registerForm = document.getElementById('registerForm');
+            registerForm.addEventListener('submit', function (e) {
+                const password = document.getElementById('userPassword').value;
+                const confirmPassword = document.getElementById('confirmUserPassword').value;
+
+                if (password !== confirmPassword) {
+                    e.preventDefault(); // Prevent form submission
+                    alert('Passwords do not match. Please try again.');
+                    return false;
+                }
+            });
+});
+
+    </script>
+</body>
+</html>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Social Links</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">Instagram</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Important Links</h5>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Contact</h5>
+                    <p>Phone: 8778289293</p>
+                    <p>Email: support@codearena.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

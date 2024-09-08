@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home-Code_Arena</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+            body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+        }
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 10% 6px 1%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+        /* 1st container */
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            margin: 20px;
+            margin-left: 90px;
+            /* background-image: linear-gradient(rgb(161, 179, 255),rgb(255, 255, 255)); */
+            background-color: #d0e1f9;
+        }
+
+        .container img {
+            max-width: 40%; 
+            margin: 20px 20px 10px 7%;
+            animation: moverX 1s infinite alternate;
+
+        }
+        @keyframes moverX{
+            0% { transform: translateX(0); }
+            100% { transform: translatey(-20px); }
+
+        }
+
+        .text-content h3 {
+           text-align: center;
+           font-size: xx-large;
+        }
+
+        .text-content p {
+            margin: 5px 10px 0 0;
+            padding: 0;
+            text-align: right;
+            line-height: 30px;
+            
+        }
+        .text-content button{
+            width: 30%;
+            height: 40px;
+            border-radius: 30px;
+            align-self: self-end;
+            background-color: lightblue;
+            border: 0px solid white;
+            margin-left: 70%;
+
+        }
+        .text-content button a{
+            text-decoration: none;
+            color: #000;
+            font-size: 17px;
+
+        }
+        /* 2nd container */
+        .explore-content{
+            justify-content: space-between;
+            display: flex;
+            padding: 20px;
+            margin: 20px;
+            background-color: #d0e1f9; 
+            /* background-image:linear-gradient(white,grey) */
+            
+        }
+        .txt h2{
+            flex:1;
+            padding-right: 20%;
+            text-align: right;
+            line-height: 20px;
+            padding-top:50px;
+            font-size: 35px;
+            margin-bottom: 20px;
+            
+        }
+        .txt p{
+            flex: 1;
+            padding-right: 20%;
+            text-align: right;
+            line-height: 30px;
+        }
+        .txt a{
+            text-decoration: none;
+            padding-left: 70%;
+            color: blue;
+        }
+        .explore-content img{
+            float: right;
+            max-width: 30%;
+            margin-right: 40px;
+            animation: slide 1s infinite alternate;
+        }
+        @keyframes slide{
+            0% { transform:skewX(0); }
+            100% { transform: skewX(10deg); } 
+        }
+
+        /* 3rd container */
+        .question-content{
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+            margin: 20px;
+            background-color: #d0e1f9;
+            /* border: 1px solid black;
+            background-image:linear-gradient(white,grey) */
+        }
+        .question-div,.company-div{           
+            flex: 1;
+                
+        }
+        .question-content img{
+            width: 15%;
+            height: auto;
+            margin-bottom: 10px;
+            filter: drop-shadow(2px 3px 0.2px black);
+            
+        }
+        .question-content h3{
+            color: black;
+            font-weight: bold;
+            padding: 0 20px 0 20px;
+            margin-bottom: -10;
+            font-size: 23px;
+        }
+        .question-content p{
+            float: right;
+            text-align: right;
+            line-height: 30px;
+            padding: 0 20px 0 20px;
+            
+        }
+        .question-div a,.company-div a{
+            text-decoration: none;
+            font-weight: 100;
+            float: right;
+            margin-right: 20px;
+            font-size: 15px;
+            color: rgb(17, 0, 255);
+        }
+        /* 4th Container */
+        .booking-content{
+            text-align: center;
+            line-height: 30px;
+            padding: 20px;
+            margin:-10px 100px 0 100px;
+            background-color: #d0e1f9;
+            /* border: 1px solid black;
+            background-image:linear-gradient(white,grey) */
+        }
+        .booking-content img{
+            width: 15%;
+            height: auto;
+            margin-bottom: 20px;
+            margin-top: 10px;
+            filter: drop-shadow(2px 3px 0.2px black);
+        }
+        .book-div h3{
+            color: black;
+            font-weight: bold;
+            padding: 0 20px 0 20px;
+            margin-bottom: 10px;
+        }
+        .book-div p{
+            text-align: center;
+            line-height: 30px;
+            padding: 0 40px 0 40px;
+        }
+        .book-div a{
+            text-decoration: none;
+            font-weight: 100;
+            text-align: center;
+            font-size: 15px;
+            color: blue;
+        }
+
+        /* Mail Content */
+        .mail-content h1{
+            text-align: center;
+            margin: 10px 0 5px 0;
+            padding: 20px;
+            font-size: 30px;
+        }
+        .mail-content input{
+            width: 25%;
+            height: 40px;
+            font-size: medium;
+            border: 1px solid black;
+            border-radius: 10px;
+            padding:0 20px 0 20px;
+            margin: 0 0 20px 36%;
+        }
+        .mail-content button{
+            width: 100px;
+            height: 40px;
+            background-color:rgba(42, 233, 247, 0.438);
+            border: 1px solid black;
+            border-radius: 10px;
+            font-size: large;
+            font-weight: bold;
+        }
+        .mail-content button:hover{
+            width: 100px;
+            height: 40px;
+            background-color:rgb(15, 157, 252);
+            border: 1px solid black;
+            border-radius: 10px;
+        }
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/editor">Editor</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <img src="/static/learn1.jpg" alt="LearningImg">
+        <div class="text-content">
+            <h3>A new way to learn ></h3>
+            <p>Algo Arena is the foremost platform for advancing your technical proficiency, developing your problem-solving capabilities, and getting ready for technical interviews. It is mainly used for the developers and developing Engineers.</p><br>
+            <button><a href="/signin"> Create Account > </a></button>
+        </div>
+    </div>
+
+    <div class="explore-content">
+        <div class="txt">
+            <h2>Start Exploring</h2>
+            <p>Explore is a well-structured tool that aids you in getting the most out of algo arena, offering guidance to advance your programming career step by step.</p>
+            <a href="/">Get Started ></a>
+        </div>
+            <img src="/static/explore1.jpg" alt="ExploreImg">
+    </div>
+
+    <div class="question-content">
+        <div class="question-div">
+            <img src="/static/question1.jpg" alt="QuestionPage">
+            <h3>Questios,Community & Contests</h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit tempore blanditiis saepe dolorum! Magnam nulla consequatur harum? Cupiditate nostrum, dolore iure temporibus doloribus recusandae. Suscipit eligendi nulla quibusdam ratione beatae.</p>
+            <a href="/tasks">View Questions ></a>
+        </div>
+            <div class="company-div">
+                <img src="/static/editor1.jpg" alt="CompanyPage">
+                <h3>Developing Editor</h3>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim recusandae necessitatibus quia sequi corrupti, libero nemo temporibus molestias aliquid aut numquam voluptates animi atque, minima ratione repellat a modi cumque!</p>
+                <a href="/editor">Try it ></a>
+
+            </div>
+    </div>
+
+    <div class="booking-content">
+        <div class="book-div">
+            <img src="/static/course1.jpg" alt="BookingPage">
+            <h3>Courses We have ></h3>
+            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Reprehenderit tempore blanditiis saepe dolorum! Magnam nulla consequatur harum? Cupiditate nostrum, dolore iure temporibus doloribus recusandae. Suscipit eligendi nulla quibusdam ratione beatae.</p>
+            <a href="/course">View the Courses ></a>
+        </div>
+
+    </div>
+
+    <div class="mail-content">
+        <h1>Let's We Chat...!</h1>
+        <form action="" method="post">
+            <input type="email" id="mailbox" placeholder="Enter your E-mail id...!">
+            <button type="submit" onclick="validate_mail()">Submit</button>
+        </form>
+    </div><hr>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Social Links</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">Instagram</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Important Links</h5>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Contact</h5>
+                    <p>Phone: 8778289293</p>
+                    <p>Email: support@codearena.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+</body>
+<script>
+    function validate_mail(){
+        let Emailid = document.getElementById("mailbox").value
+
+        if(Emailid ===""){
+            alert("Enter your Mail-id")
+        }
+        else{
+            alert("we will meet soon")
+        }
+    }
+    
+</script>
+</html>

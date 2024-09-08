@@ -1,0 +1,422 @@
+<!doctype html>
+<html>
+<head>
+    <title>Online Code Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/theme/dracula.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 10% 6px 1%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+
+        /* Main content */
+
+        .editor-container {
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+        }
+
+        .editor-toolbar {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .editor-toolbar select,
+        .editor-toolbar button {
+            margin: 5px 5px 5px 0;
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #ffffff;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .editor {
+            padding: 10px 0;
+            height: calc(100% - 50px);
+        }
+
+        #code-editor {
+            width: 100%;
+            height: 100%;
+            padding: 10px;
+            font-size: 16px;
+            font-family: monospace;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .output-container {
+            padding: 20px;
+            font-size: 16px;
+            font-family: monospace;
+        }
+
+        #output {
+            padding: 10px;
+            font-size: 16px;
+            font-family: monospace;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/editor">Editor</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="editor-container">
+        <div class="editor-toolbar">
+            <select id="language-select">
+                <option value="javascript">JavaScript</option>
+                <option value="python">Python</option>
+                <option value="java">Java</option>
+                <option value="htmlmixed">HTML</option>
+            </select>
+            <button id="new-file-btn">New File</button>
+            <button id="open-file-btn">Open File</button>
+            <button id="save-file-btn">Save File</button>
+            <button id="run-code-btn">Run Code</button>
+        </div>
+        <div class="editor">
+            <textarea id="code-editor"></textarea>
+        </div>
+        <div class="output-container">
+            <div id="output"></div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/javascript/javascript.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/python/python.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.59.4/mode/htmlmixed/htmlmixed.min.js"></script>
+    <script>
+        const codeEditor = document.getElementById('code-editor');
+        const runCodeBtn = document.getElementById('run-code-btn');
+        const languageSelect = document.getElementById('language-select');
+
+        // Set up code editor
+        let editor = CodeMirror.fromTextArea(codeEditor, {
+            mode: 'javascript',
+            theme: 'dracula',
+            lineNumbers: true,
+            matchBrackets: true,
+            closeBrackets: true,
+            extraKeys: {
+                'Ctrl-Space': 'autocomplete'
+            }
+        });
+
+        // Change editor mode based on language selection
+        languageSelect.addEventListener('change', () => {
+            const selectedLanguage = languageSelect.value;
+            editor.setOption('mode', selectedLanguage);
+        });
+
+        // Set up run code button
+        runCodeBtn.addEventListener('click', () => {
+            const code = editor.getValue();
+            const selectedLanguage = languageSelect.value;
+            const outputElement = document.getElementById('output');
+
+            if (selectedLanguage === 'javascript') {
+                try {
+                    let output = '';
+                    const originalConsoleLog = console.log;
+                    console.log = function(message) {
+                        output += message + '\n';
+                        originalConsoleLog.apply(console, arguments);
+                    };
+
+                    eval(code);
+
+                    console.log = originalConsoleLog;
+
+                    outputElement.innerHTML = `<pre>${output || 'Code executed successfully, but no output was returned.'}</pre>`;
+                } catch (error) {
+                    const errorMessage = error.message;
+                    const errorStack = error.stack.split('\n');
+                    let lineNumber = 'unknown';
+                    if (errorStack.length > 1) {
+                        const lineInfo = errorStack[1].match(/<anonymous>:(\d+):(\d+)/);
+                        if (lineInfo) {
+                            lineNumber = lineInfo[1];
+                        }
+                    }
+                    const errorType = error.name;
+                    outputElement.innerHTML = `<pre>Error: ${errorType} on line ${lineNumber}: ${errorMessage}</pre>`;
+                }
+            } else if (selectedLanguage === 'python') {
+                runPythonCode(code);
+            } else if (selectedLanguage === 'java') {
+                runJavaCode(code);
+            } else if (selectedLanguage === 'htmlmixed') {
+                const iframe = document.createElement('iframe');
+                iframe.style.width = '100%';
+                iframe.style.height = '300px';
+                document.body.appendChild(iframe);
+                const doc = iframe.contentDocument || iframe.contentWindow.document;
+                doc.open();
+                doc.write(code);
+                doc.close();
+                outputElement.innerHTML = '';
+                outputElement.appendChild(iframe);
+            } else {
+                outputElement.innerHTML = '<pre>Language execution not supported yet</pre>';
+            }
+        });
+
+    // Function to run Python code using Flask API
+    function runPythonCode(code) {
+        const url = 'http://127.0.0.1:5000/run-python';
+
+        fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                code: code,
+            }),
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('output').innerHTML = `<pre>Error: ${data.output}</pre>`;
+            } else {
+                document.getElementById('output').innerHTML = `<pre>${data.output}</pre>`;
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            document.getElementById('output').innerHTML = `<pre>Error: ${error.message}</pre>`;
+        });
+    }
+
+        // Function to run Java code using an API
+        function runJavaCode(code) {
+            const url = 'https://api.jdoodle.com/v1/execute'; // Replace with actual API endpoint for Java
+
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer YOUR_API_KEY', // Replace with your API key if needed
+                },
+                body: JSON.stringify({
+                    script: code,
+                    language: "java",
+                    versionIndex: "0"
+                }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    document.getElementById('output').innerHTML = `<pre>Error: ${data.error}</pre>`;
+                } else {
+                    document.getElementById('output').innerHTML = `<pre>${data.output}</pre>`;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerHTML = `<pre>Error: ${error.message}</pre>`;
+            });
+        }
+
+        // Set up new file button
+        document.getElementById('new-file-btn').addEventListener('click', () => {
+            editor.setValue('');
+        });
+
+        // Set up open file button
+        document.getElementById('open-file-btn').addEventListener('click', () => {
+            const fileInput = document.createElement('input');
+            fileInput.type = 'file';
+            fileInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    editor.setValue(e.target.result);
+                };
+                reader.readAsText(file);
+            });
+            fileInput.click();
+        });
+
+        // Set up save file button
+        document.getElementById('save-file-btn').addEventListener('click', () => {
+            const code = editor.getValue();
+            const blob = new Blob([code], { type: 'text/plain' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'code.txt';
+            a.click();
+        });
+    </script>
+
+<footer class="footer">
+    <div class="footer-container">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>About Us</h5>
+                <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+            </div>
+            <div class="col-md-3">
+                <h5>Social Links</h5>
+                <div class="social-icons">
+                    <a href="#" target="_blank">Facebook</a>
+                    <a href="#" target="_blank">Twitter</a>
+                    <a href="#" target="_blank">Instagram</a>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <h5>Important Links</h5>
+                <ul>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Help & Support</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div class="col-md-3">
+                <h5>Quick Contact</h5>
+                <p>Phone: 8778289293</p>
+                <p>Email: support@codearena.com</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

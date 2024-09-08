@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Database</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        body{
+            font-family: Arial;
+            padding: 0;
+            margin: 0;
+        }
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 10% 6px 1%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+
+        /* main content */
+        #dbh1{
+            text-align: center;
+            padding: 10px;
+            text-decoration: underline;
+            color: darkslateblue;
+            margin-top: 100px;
+        }
+        table{
+            border-collapse: collapse;
+            border: 1px solid black;
+            width: 75%;
+            margin-left: 250px;
+            margin-bottom: 50px;
+            
+        }
+        th{
+            background-color:cornflowerblue;
+            color: whitesmoke;
+            font-size: larger;
+            font-weight: bold;
+            border: 1px solid black;
+            text-align: center;
+        }
+        td{
+            border: 1px solid black;
+            table-layout: auto;
+            /* width: 100%; */
+            text-align: center;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: medium;
+        }
+        tr:nth-child(even){
+            background-color: #d6eeee;
+            padding: 5px;
+        }
+
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/currentdetails">Home</a></li>
+                <li><a href="/coursedetails">Course Registration</a></li>
+                <li><a href="/userregisdetails">User Registration</a></li>
+                <li><a href="/signin">Sign Out</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+
+    <h1 id="dbh1">Course Registors Database</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Course</th>
+                <th>Date</th>
+                <th>City</th>
+                <th>Phone Number</th>
+                <th>Gender</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in courseusers %}
+            <tr>
+                <td>{{ row [0] }}</td>
+                <td>{{ row [1] }}</td>
+                <td>{{ row [2] }}</td>
+                <td>{{ row [3] }}</td>
+                <td>{{ row [4] }}</td>
+                <td>{{ row [5] }}</td>
+                <td>{{ row [6] }}</td>
+                <td>{{ row [7] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</section>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Social Links</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">Instagram</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Important Links</h5>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Contact</h5>
+                    <p>Phone: 8778289293</p>
+                    <p>Email: support@codearena.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Programming Hub</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            color: #333;
+        }
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 10px 10% 6px 1%;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+            font-size: 17px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+            
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+        /* Main Content Area */
+        .content-area {
+            margin-left: 10px;
+            padding: 30px;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background-image: url('hero-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 120px 20px;
+            text-align: center;
+            border-radius: 8px;
+            position: relative;
+            margin-bottom: 50px;
+        }
+
+        .hero-section::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* background-color: rgba(26, 26, 46, 0.6); */
+            background-image: url(/static/master2.jpg);
+            border-radius: 8px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+
+        .btn-explore {
+            background-color: #ff5722;
+            color: #fff;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn-explore:hover {
+            background-color: #e64a19;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Topics Section */
+        .topics-section {
+            text-align: center;
+        }
+
+        .topics-section h2 {
+            font-size: 36px;
+            margin-bottom: 40px;
+            color: #1a1a2e;
+        }
+
+        .topics-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+
+        .topic-card {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            width: 280px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .topic-card img {
+            max-width: 100%;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        .topic-card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #1a1a2e;
+        }
+
+        .topic-card p {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .btn-register {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+
+        .btn-register:hover {
+            background-color: #43a047;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .content-area {
+                margin-left: 220px;
+                padding: 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .topics-grid {
+                gap: 20px;
+            }
+
+            .topic-card {
+                width: 100%;
+                max-width: 400px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .side-nav {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .content-area {
+                margin-left: 0;
+            }
+
+            .hero-section {
+                padding: 80px 20px;
+            }
+
+            .hero-content h1 {
+                font-size: 28px;
+            }
+
+            .hero-content p {
+                font-size: 16px;
+            }
+        }
+
+        /* Empty Registration Box */
+
+        .emtyreg{
+            border: 1px solid black;
+            float: left;
+            width: 650px;
+            height: 430px;
+            /* padding-top: 12%; */
+            margin-left: 40px;
+            text-align: center;
+            background-color:#555;
+            color: white;
+            
+        }
+        .emtyteg_img img{
+            width: 200px;
+            height: auto;
+            margin-top: 10%;
+        }
+        /* Registration Form */
+        
+        .booking-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 0 40px 54%;
+            padding: 20px;
+            border: 1px solid black;
+            max-width: 600px; 
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateY(-20px); }
+            to { transform: translateY(0); }
+        }
+
+        #book_h1{
+            text-decoration: underline solid black;
+            padding-bottom:10px ;
+        }
+        .form-content {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .register-div-right, .register-div-left {
+            width: 48%; 
+        }
+
+        label {
+            display: block;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 6px; 
+            margin-top: 8px; 
+            margin-bottom: 8px; 
+            box-sizing: border-box;
+        }
+
+        .gender-options {
+            display: flex;
+            align-items: center;
+        }
+
+        .gender-options input {
+            margin-right: 5px;
+        }
+
+        .gender-options label {
+            margin-right: 10px; 
+        }
+
+        button {
+            background-color: rgb(78, 78, 245);
+            width: 100%;
+            height: 35px; 
+            border-radius: 20px; 
+            margin-top: 30px; 
+            border: none;
+            color: white;
+            cursor: pointer;
+            animation: buttonPop 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color:#2c3e50;
+        }
+
+        @keyframes buttonPop {
+            from { transform: scale(0.95); }
+            to { transform: scale(1); }
+        }
+
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/editor">Editor</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- mail conformation print statement  -->
+
+     {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <ul>
+      {% for category, message in messages %}
+        <li class="{{ category }}">{{ message }}</li>
+      {% endfor %}
+      </ul>
+    {% endif %}
+  {% endwith %}
+
+    <!-- Main Content Area -->
+    <main class="content-area">
+        <!-- Hero Section -->
+        <section class="hero-section" id="home">
+            <div class="hero-content">
+                <h1>Master Programming Languages</h1>
+                <p>Join our courses and enhance your coding skills.</p>
+                <a href="#courses" class="btn-explore">Get Started</a>
+            </div>
+        </section>
+
+        <!-- Topics Section -->
+        <section class="topics-section" id="courses">
+            <h2>Our Courses</h2>
+            <div class="topics-grid">
+                <!-- Python Topic -->
+                <div class="topic-card">
+                    <img src="/static/python.jpg" alt="Python Course" style="height: 210px; width: auto;">
+                    <h3>Python Programming</h3>
+                    <p>Learn Python from scratch and build powerful applications.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- Java Topic -->
+                <div class="topic-card">
+                    <img src="/static/java.jpg" alt="Java Course" >
+                    <h3>Java Development</h3>
+                    <p>Master Java and develop robust enterprise applications.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- JavaScript Topic -->
+                <div class="topic-card">
+                    <img src="/static/js.png" alt="JavaScript Course" style="width: auto; height: 230px;">
+                    <h3>JavaScript Essentials</h3>
+                    <p>Become proficient in JavaScript and create dynamic web pages.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- HTML & CSS Topic -->
+                <div class="topic-card">
+                    <img src="/static/htmlcss.jpg" alt="HTML & CSS Course" style="height: 230px;width: 300px;">
+                    <h3>HTML & CSS Design</h3>
+                    <p>Design stunning websites with HTML & CSS techniques.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- C Topic -->
+                <div class="topic-card">
+                    <img src="/static/c.png" alt="C Course" style="height: 220px;">
+                    <h3>C Programming</h3>
+                    <p>Understand the fundamentals of C and develop efficient, low-level software.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- C++ Topic -->
+                <div class="topic-card">
+                    <img src="/static/c++.png" alt="C++ Course"style="height: 200px;">
+                    <h3>C++ Programming</h3>
+                    <p>Dive deep into C++ and learn advanced programming techniques for high-performance applications.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+                <!-- C# Topic -->
+                <div class="topic-card">
+                    <img src="/static/csharp.png" alt="C# Course" style="height: 220px;">
+                    <h3>C# Programming</h3>
+                    <p>Master C# and create powerful Windows applications and games with .NET.</p>
+                    <a href="#reg" class="btn-register">Register</a>
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- Registration Form -->
+    
+<section id="reg">
+    <div class="emtyreg">
+        <div class="emtyteg_img">
+            <img src="/static/register1.jpg" alt="Register">
+        </div>
+        <h1>Register Your Future</h1>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rem, deserunt.</p>
+    </div>
+    <!-- Form Content -->
+    <div class="booking-content">
+        <h2 id="book_h1">Booking For Your Future</h2>
+        <div class="form-content">
+            <div class="register-div-left">
+                <form action="/coregis" method="post">
+                    <label for="name">Full Name</label>
+                    <input type="text" name="name" placeholder="Full Name" required ><br>
+
+                    <label for="email">E-mail</label>
+                    <input type="email" name="email" placeholder="E-mail" required><br>
+
+                    <label for="date">Date of submission</label>
+                    <input type="date" name="date" id="date" required><br>
+
+                    <label>Gender</label>
+                    <div class="gender-options" >
+                        <input type="radio" name="gender" value="male" id="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" value="female" id="female">
+                        <label for="female">Female</label>
+                        <input type="radio" name="gender" value="others" id="others">
+                        <label for="others">Others</label>
+                    </div>
+
+            </div>
+            <div class="register-div-right">
+                        <label for="course">Course you are applying for</label>
+                        <select name="course" required>
+                            <option value="select">select</option>
+                            <option value="Python">Python</option>
+                            <option value="Java">Java</option>
+                            <option value="Java">JavaScript</option>
+                            <option value="html_css">HTML & CSS</option>
+                            <option value="c">C</option>
+                            <option value="c++">C++</option>
+                            <option value="C#">C#</option>
+                        </select><br>
+
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" minlength="10" maxlength="10" required><br>
+
+                        <label for="city">City</label>
+                        <input type="text" name="city" placeholder="City" required><br>
+                        
+                        <button type="submit" class="register-button">Register</button>
+
+                    </form>
+            </div>
+        </div>
+        
+    </div>
+</section>
+<script>
+        // Get today's date in the format YYYY-MM-DD
+        const today = new Date().toISOString().split('T')[0];
+        
+        // Set the min and max attributes to today
+        const dateInput = document.getElementById('date');
+        dateInput.setAttribute('min', today);
+        dateInput.setAttribute('max', today);
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>About Us</h5>
+                    <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Social Links</h5>
+                    <div class="social-icons">
+                        <a href="#" target="_blank">Facebook</a>
+                        <a href="#" target="_blank">Twitter</a>
+                        <a href="#" target="_blank">Instagram</a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Important Links</h5>
+                    <ul>
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Contact</h5>
+                    <p>Phone: 8778289293</p>
+                    <p>Email: support@codearena.com</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

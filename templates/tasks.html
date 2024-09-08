@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ecf0f1;
+        }
+        /* header */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: #ffffff;
+            margin-top: 20px;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 7%; 
+            margin: 15px 0px 10px -10px;
+            /* margin-right: 0px;
+            margin-top: 16px; */
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin: 0px 50px 6px -30px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            font-weight: bold;
+            
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+        nav ul li a:hover{
+            text-decoration: none;
+            color: #96fa89;
+        }
+        /* Tasks */
+        .heading_h1{
+            text-align: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+            border: 1px solid bisque;
+            margin-top: 20px;
+        }
+        .dashboard {
+            display: flex;
+            justify-content: space-around;
+            padding: 50px;
+        }
+        .dashboard h2{
+            font-size: 20px;
+            font-weight: bolder;
+        }
+
+        .task {
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            width: 200px;
+            height: 160px;
+            transition: transform 0.3s ease;
+        }
+
+        .task:hover {
+            transform: scale(1.10);
+        }
+
+        .scoreboard {
+            margin-top: 15px;
+        }
+
+        .circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background-color: #fff;
+            line-height: 70px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            display: inline-block;
+        }
+        button{
+            text-transform: none;
+            background-color: lavender;
+            border-radius: 13px;
+            width: 90px;
+            border: 1.2px solid black;
+        }
+        button:hover{
+            background-color: wheat;
+        }
+        .task-details {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid black;
+            margin: 20px;
+            padding-left: 30%;
+            box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+            
+        }
+        /* Footer styles */
+        .footer {
+            background: #2c3e50;
+            color: white;
+            padding: 40px 0;
+            margin-bottom: 20px;
+        }
+        .footer h5 {
+            color: white;
+            margin-bottom: 20px;
+        }
+        .footer a {
+            color: #d1d1d1;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+        .social-icons a {
+            margin-right: 10px;
+            color: white;
+        }
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: -15px;
+        }
+        .col-md-3 {
+            width: 25%;
+            padding: 15px;
+        }
+        @media (max-width: 768px) {
+            .col-md-3 {
+                width: 100%;
+            }
+        }
+        .col-md-3 ul {
+            list-style: none;
+            padding: 0;
+        }
+        .col-md-3 li {
+            margin-bottom: 10px;
+        }
+
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="/static/logo1.png" alt="CodeArena Logo" class="logo">
+            <span class="company-name">Code_Arena</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="/">Explore</a></li>
+                <li><a href="/tasks">Tasks</a></li>
+                <li><a href="/editor">Editor</a></li>
+                <li><a href="/course">Courses</a></li>
+                <li><a href="/signin">Sign In</a></li>
+            </ul>
+        </nav>
+    </header>
+    <h1 class="heading_h1">Improve Your Knowledge</h1>
+    <div class="dashboard">
+        <div id="python" class="task">
+            <h2>Python</h2>
+            <div class="scoreboard">
+                <div id="pythonScore" class="circle">0%</div>
+            </div>
+        </div>
+        <div id="java" class="task">
+            <h2>Java</h2>
+            <div class="scoreboard">
+                <div id="javaScore" class="circle">0%</div>
+            </div>
+        </div>
+        <div id="javascript" class="task">
+            <h2>JavaScript</h2>
+            <div class="scoreboard">
+                <div id="javascriptScore" class="circle">0%</div>
+            </div>
+        </div>
+        <div id="html" class="task">
+            <h2>HTML</h2>
+            <div class="scoreboard">
+                <div id="htmlScore" class="circle">0%</div>
+            </div>
+        </div>
+        <div id="css" class="task">
+            <h2>CSS</h2>
+            <div class="scoreboard">
+                <div id="cssScore" class="circle">0%</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="taskDetails" class="task-details">
+        <!-- This is where task questions will appear -->
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+    const tasks = document.querySelectorAll('.task');
+    const taskDetails = document.getElementById('taskDetails');
+
+    const questions = {
+        python: [
+            {
+                question: "Write a Python function that returns the sum of two numbers.",
+                answer: "def sum(a, b): return a + b"
+            },
+            {
+                question: "How do you create a list in Python?",
+                answer: "my_list = []"
+            },
+            {
+                question: "How do you access the first element of a list in Python?",
+                answer: "my_list[0]"
+            },
+            {
+                question: "Write a Python function to check if a number is even.",
+                answer: "def is_even(n): return n % 2 == 0"
+            },
+            {
+                question: "How do you create a dictionary in Python?",
+                answer: "my_dict = {}"
+            },
+            {
+                question: "How do you import a module in Python?",
+                answer: "import module_name"
+            },
+            {
+                question: "Write a Python for loop to iterate over a list.",
+                answer: "for item in my_list: print(item)"
+            },
+            {
+                question: "How do you create a tuple in Python?",
+                answer: "my_tuple = ()"
+            },
+            {
+                question: "Write a Python function to reverse a string.",
+                answer: "def reverse_string(s): return s[::-1]"
+            },
+            {
+                question: "How do you write a comment in Python?",
+                answer: "#,'''"
+            }
+        ],
+        java: [
+            {
+                question: "Write a Java method to calculate factorial.",
+                answer: "int factorial(int n) { if (n == 0) return 1; return n * factorial(n - 1); }"
+            },
+            {
+                question: "How do you create an ArrayList in Java?",
+                answer: "ArrayList<String> list = new ArrayList<>();"
+            },
+            {
+                question: "How do you define a class in Java?",
+                answer: "class MyClass {}"
+            },
+            {
+                question: "Write a Java method to check if a number is prime.",
+                answer: "boolean isPrime(int n) { if (n <= 1) return false; for (int i = 2; i < n; i++) { if (n % i == 0) return false; } return true; }"
+            },
+            {
+                question: "How do you create a HashMap in Java?",
+                answer: "HashMap<String, Integer> map = new HashMap<>();"
+            },
+            {
+                question: "Write a Java method to reverse a string.",
+                answer: "String reverse(String s) { return new StringBuilder(s).reverse().toString(); }"
+            },
+            {
+                question: "How do you define an interface in Java?",
+                answer: "interface MyInterface {}"
+            },
+            {
+                question: "Write a Java method to calculate the Fibonacci sequence.",
+                answer: "int fibonacci(int n) { if (n <= 1) return n; return fibonacci(n - 1) + fibonacci(n - 2); }"
+            },
+            {
+                question: "How do you handle exceptions in Java?",
+                answer: "try { // code } catch (Exception e) { // handle exception }"
+            },
+            {
+                question: "How do you create a constructor in Java?",
+                answer: "public MyClass() {}"
+            }
+        ],
+        javascript: [
+            {
+                question: "How do you declare a variable in JavaScript?",
+                answer: "let myVar;"
+            },
+            {
+                question: "How do you create a function in JavaScript?",
+                answer: "function myFunction() {}"
+            },
+            {
+                question: "Write a JavaScript function to check if a number is even.",
+                answer: "function isEven(n) { return n % 2 === 0; }"
+            },
+            {
+                question: "How do you select an element by its ID in JavaScript?",
+                answer: "document.getElementById('myId')"
+            },
+            {
+                question: "How do you add an event listener in JavaScript?",
+                answer: "element.addEventListener('click', function() {});"
+            },
+            {
+                question: "How do you create an array in JavaScript?",
+                answer: "let myArray = [];"
+            },
+            {
+                question: "Write a JavaScript function to reverse a string.",
+                answer: "function reverseString(s) { return s.split('').reverse().join(''); }"
+            },
+            {
+                question: "How do you write a comment in JavaScript?",
+                answer: "// This is a comment"
+            },
+            {
+                question: "How do you check the type of a variable in JavaScript?",
+                answer: "typeof myVar"
+            },
+            {
+                question: "How do you create an object in JavaScript?",
+                answer: "let myObject = {};"
+            }
+        ],
+        html: [
+            {
+                question: "How do you create a hyperlink in HTML?",
+                answer: "<a href='url'>Link text</a>"
+            },
+            {
+                question: "How do you create an ordered list in HTML?",
+                answer: "<ol><li>Item 1</li><li>Item 2</li></ol>"
+            },
+            {
+                question: "How do you create a form in HTML?",
+                answer: "<form></form>"
+            },
+            {
+                question: "How do you create an image in HTML?",
+                answer: "<img src='image.jpg' alt='Description'>"
+            },
+            {
+                question: "How do you create a table in HTML?",
+                answer: "<table><tr><th>Header</th></tr><tr><td>Data</td></tr></table>"
+            },
+            {
+                question: "How do you create a text input field in HTML?",
+                answer: "<input type='text'>"
+            },
+            {
+                question: "How do you create a checkbox in HTML?",
+                answer: "<input type='checkbox'>"
+            },
+            {
+                question: "How do you create a drop-down list in HTML?",
+                answer: "<select><option>Option 1</option><option>Option 2</option></select>"
+            },
+            {
+                question: "How do you create a paragraph in HTML?",
+                answer: "<p>Paragraph text</p>"
+            },
+            {
+                question: "How do you create a division (div) in HTML?",
+                answer: "<div></div>"
+            }
+        ],
+        css: [
+            {
+                question: "How do you change the background color in CSS?",
+                answer: "background-color: color;"
+            },
+            {
+                question: "How do you set the font size in CSS?",
+                answer: "font-size: 16px;"
+            },
+            {
+                question: "How do you add padding to an element in CSS?",
+                answer: "padding: 10px;"
+            },
+            {
+                question: "How do you center text in CSS?",
+                answer: "text-align: center;"
+            },
+            {
+                question: "How do you set a border in CSS?",
+                answer: "border: 1px solid black;"
+            },
+            {
+                question: "How do you make text bold in CSS?",
+                answer: "font-weight: bold;"
+            },
+            {
+                question: "How do you create a CSS class?",
+                answer: ".className {}"
+            },
+            {
+                question: "How do you apply a CSS class to an HTML element?",
+                answer: "<div class='className'></div>"
+            },
+            {
+                question: "How do you set the margin in CSS?",
+                answer: "margin: 10px;"
+            },
+            {
+                question: "How do you change the text color in CSS?",
+                answer: "color: red;"
+            }
+        ]
+    };
+
+    // Function to update the scoreboard
+    const updateScoreboard = (taskId, correctCount, totalQuestions) => {
+        const percentage = Math.round((correctCount / totalQuestions) * 100);
+        const scoreElement = document.getElementById(`${taskId}Score`);
+        scoreElement.textContent = `${percentage}%`;
+    };
+
+    tasks.forEach(task => {
+        task.addEventListener('click', function() {
+            const taskId = this.id;
+            const taskQuestions = questions[taskId];
+            taskDetails.innerHTML = `<h3>${this.querySelector('h2').textContent} Questions</h3>`;
+
+            let correctCount = 0;
+
+            taskQuestions.forEach((task, index) => {
+                taskDetails.innerHTML += `
+                    <div class="question-block">
+                        <p>${task.question}</p>
+                        <textarea id="answer-${taskId}-${index}" rows="3" cols="50"></textarea>
+                        <button onclick="validateAnswer('${taskId}', ${index})">Submit</button>
+                        <div id="feedback-${taskId}-${index}" class="feedback"></div>
+                    </div>`;
+            });
+
+            taskDetails.style.display = 'block';
+
+            // Function to validate the user's answer
+            window.validateAnswer = function(taskId, index) {
+                const userAnswer = document.getElementById(`answer-${taskId}-${index}`).value.trim();
+                const correctAnswer = questions[taskId][index].answer.trim();
+                const feedbackElement = document.getElementById(`feedback-${taskId}-${index}`);
+
+                if (userAnswer === correctAnswer) {
+                    correctCount++;
+                    feedbackElement.textContent = "Correct!";
+                    feedbackElement.style.color = "green";
+                    document.getElementById(`answer-${taskId}-${index}`).disabled = true;
+                    updateScoreboard(taskId, correctCount, questions[taskId].length);
+                } else {
+                    feedbackElement.textContent = "This answer is wrong. Please re-enter the correct answer.";
+                    feedbackElement.style.color = "red";
+                }
+            };
+        });
+    });
+});
+
+    </script>
+        <footer class="footer">
+            <div class="footer-container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h5>About Us</h5>
+                        <p>Code Arena is a platform for developers, providing daily updates on technology, computer science, and Indian developer news.</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Social Links</h5>
+                        <div class="social-icons">
+                            <a href="#" target="_blank">Facebook</a>
+                            <a href="#" target="_blank">Twitter</a>
+                            <a href="#" target="_blank">Instagram</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Important Links</h5>
+                        <ul>
+                            <li><a href="#">Terms & Conditions</a></li>
+                            <li><a href="#">Help & Support</a></li>
+                            <li><a href="#">Privacy Policy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-3">
+                        <h5>Quick Contact</h5>
+                        <p>Phone: 8778289293</p>
+                        <p>Email: support@codearena.com</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+</body>
+</html>
